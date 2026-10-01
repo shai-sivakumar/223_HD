@@ -17,9 +17,10 @@ pipeline {
                 bat 'npm test'
             }
         }
-        stage('Code Quality') {
+       stage('Code Quality') {
             steps {
-                echo 'Running code quality analysis...'
+                echo 'Running code quality analysis with ESLint...'
+                bat 'npx eslint server.js server.test.js'
             }
         }
         stage('Security') {
