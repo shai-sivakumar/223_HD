@@ -25,7 +25,8 @@ pipeline {
         }
         stage('Security') {
             steps {
-                echo 'Running vulnerability scan...'
+                echo 'Running vulnerability scan on dependencies...'
+                bat 'npm audit'
             }
         }
         stage('Deploy') {
