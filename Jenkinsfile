@@ -3,8 +3,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building DermaAI Backend (Docker image)...'
-                bat 'docker build -t derma-ai-backend:latest .'
+                echo 'Building DermaAI Backend (Creating ZIP artefact)...'
+                // Uses native Windows tools to create a zip file
+                bat 'tar.exe -a -c -f derma-ai-backend.zip *'
+                // Tells Jenkins to save the file as a build artefact
+                archiveArtifacts artifacts: 'derma-ai-backend.zip', followSymlinks: false
             }
         }
         stage('Test') {
