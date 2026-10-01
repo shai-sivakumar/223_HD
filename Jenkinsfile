@@ -4,13 +4,14 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building DermaAI Backend (Docker image)...'
-                // We will add the actual Docker build command here next
+                sh 'docker build -t derma-ai-backend:latest .'
             }
         }
         stage('Test') {
             steps {
-                echo 'Running automated tests...'
-                // We will add the npm test command here next
+                echo 'Installing dependencies and running automated tests...'
+                sh 'npm install'
+                sh 'npm test'
             }
         }
         stage('Code Quality') {
